@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-//import './train.png';
 import train from './train.png';
 
 class App extends Component {
@@ -31,8 +30,8 @@ class App extends Component {
               lng: position.coords.longitude
             };
                         
-            var marker;
-            marker = new window.google.maps.Marker({
+            
+            var marker = new window.google.maps.Marker({
                position:{lat: position.coords.latitude,
                lng: position.coords.longitude} ,
                map: map,
