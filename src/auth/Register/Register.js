@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createUser } from '../../store/action/authAction'
+//import { firestoreConnect } from 'react-redux-firebase';
 
 const loginStyle = {
   width: "90%",
   maxWidth: "315px",
-  margin: "20px auto",
-  border: "1px solid #ddd",
+  margin: "100px auto",
+  border: "5px solid #ddd",
   borderRadius: "5px",
-  padding: "10px"
+  padding: "30px"
 }
 
-class Login extends Component {
+class Register extends Component {
   state = {
     name: '',
     email: '',
     password: ''
   }
-  handleChange=(e)=>{
+  handleChange = (e) => {
     this.setState({
       [e.target.id] : e.target.value
     })
   }
-  handleSubmit=(e)=>{
-    //e.preventDefalt();
-    console.log(this.state)
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.createUser(this.state);
   }
   
   render() {
@@ -56,19 +59,19 @@ class Login extends Component {
         </div>
 
         <div className="input-field">
-          <button className="btn blue lighten-1 z-depth-0">Sign In</button>  
+          <button className="btn blue lighten-1 z-depth-0">Sign Up</button>  
         </div>
         </form>
+         
       </div>
     );
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+  return{
+    createUser: (user) => dispatch(createUser(user))
+  }
+}
 
-
-/* 
-  <Button color="link" className="px-0">Forgot password?</Button>
- <Link to="/register">
- <Button color="primary" className="mt-3" active tabIndex={-1}>Register Now!</Button>
-</Link> */
+export default connect(null, mapDispatchToProps)(Register);

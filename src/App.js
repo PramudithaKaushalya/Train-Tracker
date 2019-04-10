@@ -3,6 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from './containers/Header';
 import Login from './auth/Login';
 import Register from './auth/Register';
+//import New from './New';
+//import DefaultHeader from './containers/DefaultLayout/DefaultHeader';
 
 class App extends Component {
   render(){

@@ -1,77 +1,39 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { Button, Card, CardBody, CardGroup, Col, Container, Input, InputGroup, InputGroupAddon, InputGroupText, Row, NavLink  } from 'reactstrap';
 
-const loginStyle = {
-  width: "90%",
-  maxWidth: "315px",
-  margin: "20px auto",
-  border: "1px solid #ddd",
-  borderRadius: "5px",
-  padding: "10px"
-}
-
-class Login extends Component {
- 
-  constructor(props) {
-    super(props)
-    this.authWithEmailPassword = this.authWithEmailPassword.bind(this)
-  }   
-
-  authWithEmailPassword(event) {
-    event.preventDefault()
-    console.log("Login")
-    console.table([{
-      email: this.emailInput.value,
-      password: this.passwordInput.value,
-    }])
+class New extends Component {
+  constuctor() {
+    this.routeChange = this.routeChange.bind(this);
   }
+
+  routeChange() {
+    let path = `./src/auth/register`;
+    this.props.history.push(path);
+  }
+
   render() {
     return (
-      <div style={loginStyle}>
-       <h4>SIGN IN</h4>
-       Sign In to your account
-        <form onSubmit= { (event) => { this.authWithEmailPassword(event) }} ref={ (form) => {this.loginForm = form }}/>
-     
-        <div style={{marginBottom: "10px"}} className="pt-callout pt-icon-info-sign">
-          
-          <label className="pt-label">
-            Email
-            <input style={{width: "100%"}} className="pt-input" name="email" type="email" ref={(input) => {this.emailInput = input}} 
-            placeholder= "Email">
-            </input>  
-          </label>
-        
-          <label className="pt-label">
-            Password
-            <input style={{width: "100%"}} className="pt-input" name="password" type="email" ref={(input) => {this.passwordInput = input}} 
-            placeholder= "Password">
-            </input>  
-          </label>
-
-          <input style={{width: "100%"}} type="submit" className="pt-button pt-intent-primary" value="SignIn"/>
-        </div>
+      <div className="app flex-row align-items-center">
+        <Container>
+          ...
+          <Row>
+            <Col xs="6">                      
+              <Button color="primary" className="px-4"
+                onClick={this.routeChange}
+                  >
+                  Login
+                </Button>
+            </Col>
+            <Col xs="6" className="text-right">
+              <Button color="link" className="px-0">Forgot password?</Button>
+            </Col>
+          </Row>
+          ...
+        </Container>
       </div>
     );
   }
 }
 
-export default Login;
-
-
-/* 
- state = {
-    email: '',
-    password: ''
-  }
-  handleChange=(e)=>{
-    this.setState({
-      [e.target.id]:e.target.value
-    })
-  }
-  handleSubmit=(e)=>{
-    //e.preventDefalt();
-    console.log(this.state)
-  }
-  <Button color="link" className="px-0">Forgot password?</Button>
- <Link to="/register">
- <Button color="primary" className="mt-3" active tabIndex={-1}>Register Now!</Button>
-</Link> */
+export default withRouter(New);
