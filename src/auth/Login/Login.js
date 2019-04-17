@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../store/action/authAction';
+import {Redirect} from 'react-router-dom'
 
 const loginStyle = {
   width: "90%",
@@ -12,9 +13,14 @@ const loginStyle = {
 }
 
 class Login extends Component {
+  
   state = {
     email: '',
-    password: ''
+    password: '',
+    redirectToReferrer: false
+  }
+  formValidation(){
+    console.log("Validated")
   }
   handleChange=(e)=>{
     this.setState({
@@ -23,12 +29,22 @@ class Login extends Component {
   }
   handleSubmit=(e)=>{
     e.preventDefault();
+    this.formValidation();
     this.props.login(this.state);
+    this.setState({redirectToReferrer: true})
   }
   
   render() {
     const { authError } = this.props;
-
+    const {from} = this.props.location.state || {
+      from: {
+        pathname: '/Dashboard'
+      }
+    }
+    const {redirectToReferrer} = this.state
+    if (redirectToReferrer) {
+      return (<Redirect to={from}/>)
+    }
     return (
       <div style={loginStyle} className="white">
        
@@ -57,6 +73,8 @@ class Login extends Component {
         </form>
       </div>
     );
+
+    
   }
 }
 

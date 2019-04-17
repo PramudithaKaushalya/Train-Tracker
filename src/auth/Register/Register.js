@@ -54,10 +54,13 @@ class Register extends Component {
         </div> 
 
         <div className="input-field"> 
-          <label htmlFor="password"> Confirm Password </label>  
+          <label htmlFor="cpassword"> Confirm Password </label>  
           <input id="cpassword" type="password" onChange={this.handleChange}/>
         </div>
 
+        <div className="input-field">
+        
+      </div>
         <div className="input-field">
           <button className="btn blue lighten-1 z-depth-0">Sign Up</button>  
         </div>
