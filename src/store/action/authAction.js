@@ -1,7 +1,9 @@
 export const createUser = (user) => {
-    return (dispatch, getState, {getFirebase, getFirestore}) => {
+    return (dispatch, getState, {getFirebase, getFirestore, firebase}) => {
         
         const firestore = getFirestore();
+        var userID = firebase.auth().createUser;
+        console.log(userID.uid);
         firestore.collection("admin").add({
             ...user,
             createAt: new Date()
@@ -12,6 +14,22 @@ export const createUser = (user) => {
         })
     }
 }; 
+
+export const register = (credentials) => {
+    return (dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase();
+
+        firebase.auth().createUserWithEmailAndPassword(
+            credentials.email,
+            credentials.password
+        ).then(() => {
+            
+            dispatch({ type: 'REGISTRATION_SUCCESS', credentials});
+        }).catch((err) => {
+            dispatch({ type: 'REGISTRATION_ERROR', err})
+        })
+    }
+}
 
 export const login = (credentials) => {
     return (dispatch, getState, {getFirebase}) => {

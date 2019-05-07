@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createUser } from '../../store/action/authAction'
-//import { firestoreConnect } from 'react-redux-firebase';
+import { register } from '../../store/action/authAction';
+import {Redirect} from 'react-router-dom';
+import Switch from "react-switch";
 
 const loginStyle = {
   width: "90%",
@@ -16,20 +17,41 @@ class Register extends Component {
   state = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    checked: false,
+    redirectToReferrer: false
   }
   handleChange = (e) => {
     this.setState({
       [e.target.id] : e.target.value
     })
   }
+  handle(checked) {
+    this.setState({ checked });
+  }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.createUser(this.state);
+    if (e.password !== e.confirm) {
+      this.setState({error:'Password do not match'})
+  } 
+    this.props.register(this.state);
+    
+    this.setState({redirectToReferrer: true})
+    
   }
-  
   render() {
+    const { authError } = this.props;
+    const {from} = this.props.location.state || {
+      from: {
+        pathname: '/Dashboard'
+      }
+    }
+    const {redirectToReferrer} = this.state
+    if (redirectToReferrer && {authError}==null) {
+      return (<Redirect to={from}/>)
+    }
     return (
+
       <div style={loginStyle}>
        
         <form onSubmit={this.handleSubmit}>
@@ -57,13 +79,16 @@ class Register extends Component {
           <label htmlFor="cpassword"> Confirm Password </label>  
           <input id="cpassword" type="password" onChange={this.handleChange}/>
         </div>
-
-        <div className="input-field">
-        
-      </div>
+        <label>
+        <span>Admin</span>
+        <Switch id="admin" onChange={this.handle}  checked={this.state.checked}/>
+        </label>  
         <div className="input-field">
           <button className="btn blue lighten-1 z-depth-0">Sign Up</button>  
         </div>
+        <div className="red-text center">
+            { authError ? <p>{authError}</p>: null}
+          </div>
         </form>
          
       </div>
@@ -73,7 +98,7 @@ class Register extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    createUser: (user) => dispatch(createUser(user))
+    register: (user) => dispatch(register(user))
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../store/action/authAction';
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
 
 const loginStyle = {
   width: "90%",
@@ -66,10 +66,10 @@ class Login extends Component {
 
         <div className="input-field">
           <button className="btn blue lighten-1 z-depth-0">Sign In</button>  
-          <div className="red-text center">
+        </div>
+        <div className="red-text center">
             { authError ? <p>{authError}</p>: null}
           </div>
-        </div>
         </form>
       </div>
     );
