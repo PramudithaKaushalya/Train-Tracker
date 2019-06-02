@@ -77,7 +77,8 @@ class Search extends Component {
             
       snapshot.docs.forEach(doc=>{
         object = {  key : key.toString(),
-                    title : doc.get('Details.Name'), 
+                    title : doc.get(from +'.Dep'), 
+                    name : 'Name : ' + doc.get('Details.Name'),
                     dep : 'Departure from '+ from +' : '+ doc.get(from +'.Dep'), 
                     arr : 'Arrival at '    + to   +' : '+ doc.get(to+'.Arr'),                                              
                     classes : 'Available Classes : ' + doc.get('Details.Available'),
@@ -101,6 +102,7 @@ class Search extends Component {
     for(const [index, value] of m.entries()){
         items.push(
         <Collapsible key={index} trigger={value.title} className="trigger">
+          {value.name}<br/>
           {value.dep}<br/>
           {value.arr}<br/>
           {value.classes}<br/>

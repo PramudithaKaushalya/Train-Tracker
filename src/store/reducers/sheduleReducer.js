@@ -19,3 +19,6 @@ const sheduleReducer = (state = initState, action) => {
 }
 
 export default sheduleReducer;
+
+
+
