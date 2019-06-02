@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { register } from '../../store/action/authAction';
 import {Redirect} from 'react-router-dom';
-import Switch from "react-switch";
 
 const loginStyle = {
   width: "90%",
@@ -18,32 +17,36 @@ class Register extends Component {
     name: '',
     email: '',
     password: '',
-    checked: false,
     redirectToReferrer: false
   }
+ 
   handleChange = (e) => {
     this.setState({
       [e.target.id] : e.target.value
     })
   }
-  handle(checked) {
-    this.setState({ checked });
-  }
+  
   handleSubmit = (e) => {
     e.preventDefault();
-    if (e.password !== e.confirm) {
-      this.setState({error:'Password do not match'})
-  } 
-    this.props.register(this.state);
-    
-    this.setState({redirectToReferrer: true})
-    
+    if (this.state.password !== this.state.cpassword) {
+      this.setState({error:'Passwords did not matching!!!'})
+      alert('Passwords did not matching!!!')
+    } 
+    else if (this.state.name === ''|| this.state.email === '') {
+      this.setState({error:'Fiels are empty'})
+      alert('All fields are required!!!')
+    } 
+    else{
+      this.props.register(this.state);
+      this.setState({redirectToReferrer: true}) 
+      alert("Create Admin Successfully!!!")
+    }    
   }
   render() {
     const { authError } = this.props;
     const {from} = this.props.location.state || {
       from: {
-        pathname: '/Dashboard'
+        pathname: '/Register'
       }
     }
     const {redirectToReferrer} = this.state
@@ -57,7 +60,7 @@ class Register extends Component {
         <form onSubmit={this.handleSubmit}>
 
         <h5>SIGN UP</h5>
-        Sign Up to Train Tracks.
+        Register the Administrators.
         <br/>
 
         <div className="input-field">  
@@ -79,10 +82,7 @@ class Register extends Component {
           <label htmlFor="cpassword"> Confirm Password </label>  
           <input id="cpassword" type="password" onChange={this.handleChange}/>
         </div>
-        <label>
-        <span>Admin</span>
-        <Switch id="admin" onChange={this.handle}  checked={this.state.checked}/>
-        </label>  
+        
         <div className="input-field">
           <button className="btn blue lighten-1 z-depth-0">Sign Up</button>  
         </div>

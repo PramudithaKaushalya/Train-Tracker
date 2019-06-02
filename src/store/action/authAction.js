@@ -16,9 +16,8 @@ export const createUser = (user) => {
 }; 
 
 export const register = (credentials) => {
-    return (dispatch, getState, {getFirebase}) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase();
-
         firebase.auth().createUserWithEmailAndPassword(
             credentials.email,
             credentials.password
@@ -27,6 +26,38 @@ export const register = (credentials) => {
             dispatch({ type: 'REGISTRATION_SUCCESS', credentials});
         }).catch((err) => {
             dispatch({ type: 'REGISTRATION_ERROR', err})
+        })
+        const firestore = getFirestore();
+        firestore.collection("admin").doc(credentials.email).set({
+            ...credentials,
+            createAt: new Date()
+        }).then(() => {
+            dispatch({ type: 'CREATE_USER', credentials});
+        }).catch((err) => {
+            dispatch({ type: 'CREATE_USER_ERROR', err})
+        })
+    }
+}
+export const driver = (credentials) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firebase = getFirebase();
+        firebase.auth().createUserWithEmailAndPassword(
+            credentials.email,
+            credentials.password
+        ).then(() => {
+            
+            dispatch({ type: 'REGISTRATION_SUCCESS', credentials});
+        }).catch((err) => {
+            dispatch({ type: 'REGISTRATION_ERROR', err})
+        })
+        const firestore = getFirestore();
+        firestore.collection("drivers").doc(credentials.email).set({
+            ...credentials,
+            createAt: new Date()
+        }).then(() => {
+            dispatch({ type: 'CREATE_USER', credentials});
+        }).catch((err) => {
+            dispatch({ type: 'CREATE_USER_ERROR', err})
         })
     }
 }

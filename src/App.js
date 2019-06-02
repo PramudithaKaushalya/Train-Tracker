@@ -3,9 +3,11 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from './containers/Header';
 import Login from './auth/Login';
 import Register from './auth/Register';
+import Driver from './auth/Register/Driver';
 import Dashboard from './containers/Dashboard';
-//import Shedule from './train/Shedule';
+import Edit from './train/Edit';
 import Search from './train/Search';
+import Add from './train/Add';
 
 class App extends Component {
   render(){
@@ -14,9 +16,12 @@ class App extends Component {
         <div className="App">
           <Header/>
           <Switch>
+            <Route path='/Driver' component={Driver} />
             <Route path='/Register' component={Register} />
+            <Route path='/Add' component={Add} />
             <Route path='/Dashboard' component={Dashboard} />
             <Route path='/Search' component={Search} />
+            <Route path='/Edit' component={Edit} />
             <Route path='/' component={Login} />
             
           </Switch>

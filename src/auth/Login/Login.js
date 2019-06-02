@@ -19,9 +19,6 @@ class Login extends Component {
     password: '',
     redirectToReferrer: false
   }
-  formValidation(){
-    console.log("Validated")
-  }
   handleChange=(e)=>{
     this.setState({
       [e.target.id] : e.target.value
@@ -29,7 +26,6 @@ class Login extends Component {
   }
   handleSubmit=(e)=>{
     e.preventDefault();
-    this.formValidation();
     this.props.login(this.state);
     this.setState({redirectToReferrer: true})
   }

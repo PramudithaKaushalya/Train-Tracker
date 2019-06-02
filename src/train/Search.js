@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getFirestore} from 'redux-firestore';
 import Collapsible from 'react-collapsible';
+import Popup from "reactjs-popup";
 
 const loginStyle = {
   width: "50%",
@@ -18,8 +19,14 @@ class Search extends Component {
     from: '',
     to: '',
     redirectToReferrer: false,
+    list: [],
     name: '',
-    list: []
+    arr: '',
+    dep: '',
+    clasess: '',
+    type: '',
+    run: '',
+    in: ''
   }
 
   handleChange=(e)=>{
@@ -28,6 +35,31 @@ class Search extends Component {
     })
   }
 
+  handleUpdate=(e)=>{
+    const db = getFirestore();
+    var up = db.collection("Train").doc("DC");
+
+    return up.update({
+      capital: true
+    })
+    .then(function() {
+      console.log("Document successfully updated!");
+    })
+    .catch(function(error) {
+      console.error("Error updating document: ", error);
+    });
+  }
+
+  handleDelete=(e)=>{
+    this.setState({
+      [e.target.id] : e.target.value
+    })
+  }
+
+  handleClick=(e)=>{
+    this.setState({ i: e.value })
+    console.log(this.state.in)
+  }
 
   handleSubmit=(e)=>{
     e.preventDefault();
@@ -44,47 +76,81 @@ class Search extends Component {
     query.get().then(snapshot=>{
             
       snapshot.docs.forEach(doc=>{
-        this.setState({
-          name:doc.data().Details.Name
-        })
-       
         object = {  key : key.toString(),
                     title : doc.get('Details.Name'), 
-                    description : 'Departure from '+ from +' : '+ doc.get(from +'.Dep') +'\n'+
-                                  'Arrival at '    + to   +' : '+ doc.get(to+'.Arr')   +'\n'+                                             
-                                  'Available Classes'   +  doc.get('Details.Type')
+                    dep : 'Departure from '+ from +' : '+ doc.get(from +'.Dep'), 
+                    arr : 'Arrival at '    + to   +' : '+ doc.get(to+'.Arr'),                                              
+                    classes : 'Available Classes : ' + doc.get('Details.Available'),
+                    type : 'Train Type : ' + doc.get('Details.Type'),
+                    run : 'Run By : ' + doc.get('Details.Run by')
         }
-        this.setState(prevState => ({
-          list: [...prevState.list , object]
-        }))
-        // this.setState(prevState=>{
-        //   return{
-        //     list:prevState.list.push(object1)
-        //   }
-        // })
-        //this.state.list.push(object1)
+     
+        var arr = this.state.list.slice();
+        arr.push(object)
+        this.setState({ list: arr })
         key++
-        
       })
     })
-    console.log(this.state.list);
+    
   }
   
   render() {
     const { authError } = this.props;
-   
-    const list2 =[]
-    const list3 = this.state.list
-    const len = list3.length
-    for (let i=0; i<len;i++){
-      list2.push(
-      <Collapsible trigger={list3} className="trigger">
-      <p>It can even bext section!</p>
-      </Collapsible>
+    const m = this.state.list;
+    const items = []    
+    for(const [index, value] of m.entries()){
+        items.push(
+        <Collapsible key={index} trigger={value.title} className="trigger">
+          {value.dep}<br/>
+          {value.arr}<br/>
+          {value.classes}<br/>
+          {value.type}<br/>
+          {value.run}<br/><br/>
+          <Popup trigger={
+          <button className="btn blue lighten-1 z-depth-0" key={index}> Update </button>
+          } position="right center">
+          <div> 
+            <div className="input-field">  
+          <label htmlFor="name"> Train Name </label>  
+          <input id="name" type="text" onChange={this.handleChange}/>       
+        </div>
+
+        <div className="input-field">  
+          <label htmlFor="arr"> Arrival Time</label>  
+          <input id="arr" type="text" onChange={this.handleChange}/>       
+        </div>
+
+        <div className="input-field"> 
+          <label htmlFor="dep"> Departure Time </label>  
+          <input id="dep" type="text" onChange={this.handleChange}/>
+        </div> 
+
+        <div className="input-field"> 
+          <label htmlFor="clasess"> Available Classes </label>  
+          <input id="clasess" type="text" onChange={this.handleChange}/>
+        </div>
+
+        <div className="input-field"> 
+          <label htmlFor="type"> Train Type </label>  
+          <input id="type" type="text" onChange={this.handleChange}/>
+        </div>
+
+        <div className="input-field"> 
+          <label htmlFor="run"> Run By </label>  
+          <input id="run" type="text" onChange={this.handleChange}/>
+        </div>
+
+        <div className="input-field">
+          <button className="btn blue lighten-1 z-depth-0" id="in" value={index} onClick={this.handleChange}>Update</button>  
+        </div>
+      </div>
+          </Popup> <span></span>
+          <button className="btn blue lighten-1 z-depth-0">Delete</button>  
+                
+        </Collapsible>
       )
     }
     return (
-      <div>
       <div style={loginStyle} className="white">
        
         <form onSubmit={this.handleSubmit}>
@@ -109,19 +175,9 @@ class Search extends Component {
             { authError ? <p>{authError}</p>: null}
           </div>
         </form>
-            {list2}
-        
-        
-      </div>  <br/>
-      <div style={loginStyle} className="white">
-       
-      
-       
-     </div>  
-      </div>
+       {items}        
+      </div>  
     );
-
-    
   }
 }
 
@@ -130,6 +186,5 @@ const mapStateToProps = (state) => {
     authError: state.auth.authError
   }
 }
-
 
 export default connect(mapStateToProps)(Search);
