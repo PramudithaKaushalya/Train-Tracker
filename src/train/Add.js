@@ -17,11 +17,11 @@ const loginStyle = {
 
 class Add extends Component {
   state = {
-    
     name: '',
     run: '',
     side: '',
     type: '',
+    class: '',
     colArr: '', colDep: '', colStop: '',
     marArr: '', marDep: '', marStop: '',
     demArr: '', demDep: '', demStop: '',
@@ -51,7 +51,7 @@ class Add extends Component {
     this.props.createTrain(this.state);
     console.log(this.state)
     this.setState({redirectToReferrer: true})
-    
+    alert("Create Train Successfully")
   }
   render() {
     const { authError } = this.props;

@@ -1,10 +1,10 @@
-export const getdata = () => {
+export const getdata = (train) => {
     return (dispatch, getState, {getFirebase, getFirestore, firebase}) => {
 
         const db = getFirestore();
-        var train = db.collection("Train").doc("Express_Mahanuwara");
+        var find = db.collection("Train").doc("Express_Mahanuwara");
 
-        train.get().then(function(doc) {
+        find.get().then(function(doc) {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
             } else {
@@ -22,7 +22,7 @@ export const createTrain = (train) => {
         
         const firestore = getFirestore();
         firestore.collection("Train").doc(train.name).set({
-            Details:{Name:train.name,RunBy:train.run,Side:train.side},
+            Details:{Name:train.name,RunBy:train.run,Side:train.side,Type:train.type,Available:train.class},
             ColomboFort:{Arr:train.colArr,Dep:train.colDep,stops:train.colStop},
             Maradana:{Arr:train.marArr,Dep:train.marDep,stops:train.marStop},
             Dematagoda:{Arr:train.demArr,Dep:train.demDep,stops:train.demStop},
@@ -33,7 +33,7 @@ export const createTrain = (train) => {
             Horape:{Arr:train.horArr,Dep:train.horDep,stops:train.horStop},
             Ragama:{Arr:train.ragArr,Dep:train.ragDep,stops:train.ragStop},
             Walpola:{Arr:train.walArr,Dep:train.walDep,stops:train.walStop},
-            Batuatte:{Arr:train.batArr,Dep:train.batDep,stops:train.batStop},
+            Batuwatte:{Arr:train.batArr,Dep:train.batDep,stops:train.batStop},
             Bulugahagoda:{Arr:train.bulArr,Dep:train.bulDep,stops:train.bulStop},
             Ganemulla:{Arr:train.ganArr,Dep:train.ganDep,stops:train.ganStop},
             Yagoda:{Arr:train.yagArr,Dep:train.yagDep,stops:train.yagStop},

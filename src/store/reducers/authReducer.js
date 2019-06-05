@@ -9,14 +9,12 @@ const authReducer = (state = initState, action) => {
     switch (action.type) {
         case 'REGISTRATION_SUCCESS':
             console.log('create user',action.user)
-            alert("Create User Successfully")
             return state
         case 'REGISTRATION_ERROR':
             console.log('create user error',action.ERR)
             return state
         case 'CREATE_TRAIN': 
-            console.log('login success',action.credentials)
-            alert("Create Train Successfully")
+            console.log('Success')
             return state
         case 'CREATE_TRAIN_ERROR': 
             console.log('user login error',action.ERR)

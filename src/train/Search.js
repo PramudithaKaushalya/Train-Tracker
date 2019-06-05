@@ -83,7 +83,7 @@ class Search extends Component {
                     arr : 'Arrival at '    + to   +' : '+ doc.get(to+'.Arr'),                                              
                     classes : 'Available Classes : ' + doc.get('Details.Available'),
                     type : 'Train Type : ' + doc.get('Details.Type'),
-                    run : 'Run By : ' + doc.get('Details.Run by')
+                    run : 'Run By : ' + doc.get('Details.Runby')
         }
      
         var arr = this.state.list.slice();
