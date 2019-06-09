@@ -47,19 +47,9 @@ export const createTrain = (train) => {
     }
 };
 
-export const update = (user) => {
+export const update = (train) => {
     return (dispatch, getState, {getFirebase, getFirestore, firebase}) => {
         
-        const firestore = getFirestore();
-        var userID = firebase.auth().createUser;
-        console.log(userID.uid);
-        firestore.collection("admin").add({
-            ...user,
-            createAt: new Date()
-        }).then(() => {
-            dispatch({ type: 'CREATE_USER', user});
-        }).catch((err) => {
-            dispatch({ type: 'CREATE_USER_ERROR', err})
-        })
+       
     }
 }; 
