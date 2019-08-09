@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import { createTrain } from '../store/action/sheduleAction';
 import {Redirect} from 'react-router-dom';
 import Collapsible from 'react-collapsible';
-//import Dropdown from 'react-dropdown';
-//import 'react-dropdown/style.css';
 
 const loginStyle = {
   width: "90%",
-  maxWidth: "315px",
+  maxWidth: "500px",
   margin: "100px auto",
   border: "5px solid #ddd",
   borderRadius: "5px",
@@ -101,11 +99,11 @@ class Add extends Component {
         )}
     return (
 
-      <div style={loginStyle}>
+      <div style={loginStyle} className="white">
        
         <form onSubmit={this.handleSubmit}>
 
-        <h5>Add Details</h5>
+        <h5>Create New Train</h5>
         <div className="input-field">  
           <label htmlFor="name"> Name </label>  
           <input id="name" type="text" onChange={this.handleChange}/>       

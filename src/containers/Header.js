@@ -7,10 +7,9 @@ import { connect } from 'react-redux';
 
 const Header = (props) => {
     const { auth } = props;
-    //console.log(auth); 
 const links = auth.uid ? <SignInLinks/> : <SignOutLinks/>; 
     return (
-        <nav className="nav-wrapper blue darken-3">
+        <nav className="nav-wrapper grey darken-3">
             <div className="container">
                 <img src={Logo} alt="Logo" height='63px' width='70px'/>
                 <Link to='/Dashboard' className="brand-logo">Train Tracks</Link>

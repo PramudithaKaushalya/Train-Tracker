@@ -11,6 +11,8 @@ const SignInLinks = (props) => {
             <li><NavLink to='/Add'>Train</NavLink></li>
             <li><NavLink to='/Search'>Shedule</NavLink></li>
             <li><NavLink to='/Edit'>Edit</NavLink></li>
+            <li><NavLink to='/Notifications'>Notifications</NavLink></li>
+            <li><NavLink to='/' className='btn btn-floating blue darken-3'>Log</NavLink></li>
             <li><NavLink to='/' onClick={props.logout}>Log Out</NavLink></li>
         </ul>
     );

@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom';
 
 const loginStyle = {
   width: "90%",
-  maxWidth: "315px",
+  maxWidth: "500px",
   margin: "100px auto",
   border: "5px solid #ddd",
   borderRadius: "5px",
@@ -56,12 +56,12 @@ class Driver extends Component {
     }
     return (
 
-      <div style={loginStyle}>
+      <div style={loginStyle} className="white">
        
         <form onSubmit={this.handleSubmit}>
 
-        <h5>SIGN UP</h5>
-        Register the Drivers.
+        <h5>Register the Drivers</h5>
+        
         <br/>
 
         <div className="input-field">  

@@ -7,7 +7,7 @@ import Collapsible from 'react-collapsible';
 
 const loginStyle = {
   width: "50%",
-  maxWidth: "1100px",
+  maxWidth: "500px",
   margin: "100px auto",
   border: "5px solid #ddd",
   borderRadius: "5px",
