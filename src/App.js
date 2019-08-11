@@ -9,6 +9,7 @@ import Edit from './train/Edit';
 import Search from './train/Search';
 import Add from './train/Add';
 import Notifications from './Messages/createmessage';
+import MessageDetails from './Messages/messagedetails';
 
 class App extends Component {
   render(){
@@ -24,7 +25,8 @@ class App extends Component {
             <Route path='/Search' component={Search} />
             <Route path='/Edit' component={Edit} />
             <Route path='/Notifications' component={Notifications} />
-            <Route path='/' component={Login} />
+            <Route path='/message/:id' component={MessageDetails} />
+            <Route exact path='/' component={Login} />
           </Switch>
         </div>
       </BrowserRouter>

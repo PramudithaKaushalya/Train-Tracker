@@ -26,9 +26,9 @@ class createmessage extends Component {
     }
     handlesubmit = (e) => {
         e.preventDefault();
-        // console.log(this.state);
+        console.log(this.state);
         this.props.createMessage(this.state)
-        this.props.history.push('/');
+        this.props.history.push('/Dashboard');
     }
 
   render() {

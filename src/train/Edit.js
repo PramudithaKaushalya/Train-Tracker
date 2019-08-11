@@ -61,11 +61,11 @@ class Edit extends Component {
     e.preventDefault();
     const firestore = getFirestore();
     firestore.collection("Train").doc(this.state.train).delete().then(function() {
-        alert("Document successfully deleted!");
+        alert("Document Successfully Deleted!");
     }).catch(function(error) {
         alert("Error removing document: ", error);
     });
-    console.log("jhg")
+    this.props.history.push('/Dashboard');
   }
 
   handleSubmit=(e)=>{
@@ -105,6 +105,7 @@ class Edit extends Component {
 ).catch(function(error) {
       console.log("Error getting document:", error);
   });
+  this.props.history.push('/Dashboard');
   }
   
   render() {

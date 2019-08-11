@@ -41,7 +41,9 @@ class Driver extends Component {
       //this.props.driver(this.state);
       this.setState({redirectToReferrer: true}) 
       alert("Create Driver Successfully!!!")
-    }console.log(this.state.email)
+    }
+    console.log(this.state.email);
+    this.props.history.push('/Dashboard');
   }
   render() {
     const { authError } = this.props;

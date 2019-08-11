@@ -40,7 +40,8 @@ class Register extends Component {
       this.props.register(this.state);
       this.setState({redirectToReferrer: true}) 
       alert("Create Admin Successfully!!!")
-    }    
+    } 
+    this.props.history.push('/Dashboard');   
   }
   render() {
     const { authError } = this.props;

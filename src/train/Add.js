@@ -47,9 +47,10 @@ class Add extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.createTrain(this.state);
-    console.log(this.state)
-    this.setState({redirectToReferrer: true})
-    alert("Create Train Successfully")
+    console.log(this.state);
+    this.setState({redirectToReferrer: true});
+    alert("Create Train Successfully");
+    this.props.history.push('/Dashboard');
   }
   render() {
     const { authError } = this.props;

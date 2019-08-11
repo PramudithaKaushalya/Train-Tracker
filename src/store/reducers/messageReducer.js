@@ -19,7 +19,6 @@ const messageReducer = (state = initState,action) => {
             return state;
         
     }
-    return state
 }
 
 export default messageReducer
