@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {createMessage} from '../store/action/messageActions';
+import {createMessage, createNotification} from '../store/action/messageActions';
 import {Redirect} from 'react-router-dom';
 
 const loginStyle = {
@@ -15,10 +15,16 @@ const loginStyle = {
 
 class createmessage extends Component {
     state = {
+        //user: '',
         title:'',
         content:'',
     }
-
+    // componentDidMount = () => {
+    //     const {auth} = this.props;
+    //     this.setState({
+    //         user : auth.name
+    //     })
+    // }
     handlechange = (e) => {
         this.setState({
             [e.target.id]:e.target.value
@@ -27,8 +33,8 @@ class createmessage extends Component {
     handlesubmit = (e) => {
         e.preventDefault();
         console.log(this.state);
-        this.props.createMessage(this.state)
-        this.props.history.push('/Dashboard');
+        this.props.createMessage(this.state);
+        this.props.history.push('/');
     }
 
   render() {
@@ -64,8 +70,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        createMessage:(message) => dispatch(createMessage(message))
+        createMessage:(message) => dispatch(createMessage(message)),
+        createNotification:(notification) => dispatch(createNotification(notification))
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps) (createmessage)
+export default connect(mapStateToProps,mapDispatchToProps) (createmessage, createNotification)

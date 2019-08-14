@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {getFirestore} from 'redux-firestore';
 import Collapsible from 'react-collapsible';
 import Popup from "reactjs-popup";
+import {Redirect} from 'react-router-dom';
 
 const loginStyle = {
   width: "50%",
@@ -96,7 +97,9 @@ class Search extends Component {
   }
   
   render() {
-    const { authError } = this.props;
+    const { auth, authError } = this.props;
+    if(!auth.uid) return <Redirect to='/signin'/>
+    
     const m = this.state.list;
     const items = []    
     for(const [index, value] of m.entries()){
@@ -185,6 +188,7 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    auth:state.firebase.auth,
     authError: state.auth.authError
   }
 }

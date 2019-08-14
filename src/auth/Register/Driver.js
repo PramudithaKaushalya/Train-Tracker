@@ -56,6 +56,8 @@ class Driver extends Component {
     if (redirectToReferrer && {authError}==null) {
       return (<Redirect to={from}/>)
     }
+    const {auth} = this.props;
+    if(!auth.uid) return <Redirect to='/signin'/>
     return (
 
       <div style={loginStyle} className="white">
@@ -100,10 +102,17 @@ class Driver extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  console.log(state);
+  return{
+    auth:state.firebase.auth,
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return{
     driver: (user) => dispatch(driver(user))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Driver);
+export default connect(mapStateToProps, mapDispatchToProps)(Driver);

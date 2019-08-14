@@ -54,6 +54,8 @@ class Add extends Component {
   }
   render() {
     const { authError } = this.props;
+    const {auth} = this.props;
+    if(!auth.uid) return <Redirect to='/signin'/>
     const {from} = this.props.location.state || {
       from: {
         pathname: '/Add'
@@ -146,10 +148,16 @@ class Add extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return{
+      auth:state.firebase.auth
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return{
     createTrain: (train) => dispatch(createTrain(train))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Add);
+export default connect(mapStateToProps, mapDispatchToProps)(Add);

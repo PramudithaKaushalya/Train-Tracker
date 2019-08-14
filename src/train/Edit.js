@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {getFirestore} from 'redux-firestore';
 import { createTrain } from '../store/action/sheduleAction';
 import Collapsible from 'react-collapsible';
+import {Redirect} from 'react-router-dom';
 //import Popup from "reactjs-popup";
 
 const loginStyle = {
@@ -55,6 +56,7 @@ class Edit extends Component {
     this.props.createTrain(this.state);
     alert("That train is updated")
     this.setState({redirectToReferrer: true})
+    this.props.history.push('/Dashboard');
   }
 
   handleDelete=(e)=>{
@@ -105,12 +107,13 @@ class Edit extends Component {
 ).catch(function(error) {
       console.log("Error getting document:", error);
   });
-  this.props.history.push('/Dashboard');
+  
   }
   
   render() {
     const { authError } = this.props;
-   
+    const {auth} = this.props;
+    if(!auth.uid) return <Redirect to='/signin'/>
     return (
       <div style={loginStyle} className="white">
        
@@ -386,10 +389,17 @@ class Edit extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  console.log(state);
+  return{
+    auth:state.firebase.auth,
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return{
     createTrain: (train) => dispatch(createTrain(train))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Edit);
+export default connect(mapStateToProps, mapDispatchToProps)(Edit);

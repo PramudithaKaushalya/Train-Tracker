@@ -54,6 +54,8 @@ class Register extends Component {
     if (redirectToReferrer && {authError}==null) {
       return (<Redirect to={from}/>)
     }
+    const {auth} = this.props;
+    if(!auth.uid) return <Redirect to='/signin'/>
     return (
 
       <div style={loginStyle} className="white">
@@ -97,10 +99,17 @@ class Register extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  console.log(state);
+  return{
+    auth:state.firebase.auth,
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return{
     register: (user) => dispatch(register(user))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

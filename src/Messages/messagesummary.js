@@ -7,7 +7,7 @@ const MessageSummary = ({message}) =>{
                 <div className="card-content grey-text text-darken-3">
                     <span className="card-title">{message.title}</span>
                     <p>Posted by {message.author}</p>
-                    <p className='grey-text'>{moment(message.createdOn.toDate()).calendar()}</p>
+                    <p className='red-text'>{moment(message.createdOn.toDate()).calendar()}</p>
                 </div>
         </div>
     )

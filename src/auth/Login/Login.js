@@ -27,17 +27,20 @@ class Login extends Component {
   handleSubmit=(e)=>{
     e.preventDefault();
     this.props.login(this.state);
-    this.setState({redirectToReferrer: true})
+    //this.setState({redirectToReferrer: true})
+    //this.props.history.push('/');
+
   }
   
   render() {
-    const { authError } = this.props;
+    const { auth, authError } = this.props;
+    if(auth.uid) return <Redirect to='/'/>
     const {from} = this.props.location.state || {
       from: {
-        pathname: '/Dashboard'
+        pathname: '/signin'
       }
     }
-    const {redirectToReferrer} = this.state
+    const {redirectToReferrer} = this.state.redirectToReferrer;
     if (redirectToReferrer) {
       return (<Redirect to={from}/>)
     }
@@ -76,6 +79,7 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    auth:state.firebase.auth,
     authError: state.auth.authError
   }
 }

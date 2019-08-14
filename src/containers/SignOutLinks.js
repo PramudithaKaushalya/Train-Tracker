@@ -9,7 +9,7 @@ import { logout } from '../store/action/authAction';
 const SignInLinks = (props) => {
     return (
         <ul className="right">
-            <li><NavLink to={'/'}>Sign In</NavLink></li>
+            <li><NavLink to={'/signin'}>Sign In</NavLink></li>
            </ul>
     )
 }

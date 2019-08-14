@@ -21,12 +21,12 @@ class App extends Component {
             <Route path='/Driver' component={Driver} />
             <Route path='/Register' component={Register} />
             <Route path='/Add' component={Add} />
-            <Route path='/Dashboard' component={Dashboard} />
             <Route path='/Search' component={Search} />
             <Route path='/Edit' component={Edit} />
             <Route path='/Notifications' component={Notifications} />
             <Route path='/message/:id' component={MessageDetails} />
-            <Route exact path='/' component={Login} />
+            <Route path='/signin' component={Login} />
+            <Route exact path='/' component={Dashboard} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -1,29 +1,48 @@
 const initState ={
-    user: [
-        {name: 'Amal', email: 'amal@gmail.com', password: '123'}
-    ]
+    authError: null
 }
 
 const authReducer = (state = initState, action) => {
     
     switch (action.type) {
         case 'REGISTRATION_SUCCESS':
-            console.log('create user',action.user)
-            return state
+            console.log('Create User',action.user)
+            return{
+                ...state,
+                authError: null
+           }  
         case 'REGISTRATION_ERROR':
-            console.log('create user error',action.ERR)
-            return state
+            console.log('Create User Error',action.ERR)
+            return{
+                ...state,
+                authError: 'Registration Failed!'
+           }  
+        case 'LOGIN_SUCCESS': 
+            console.log('Log In Success',action.ERR)
+            return{
+                ...state,
+                authError: null
+           }     
+        case 'LOGIN_ERROR': 
+            console.log('Log In Error',action.ERR)
+            return{
+                 ...state,
+                 authError: 'Loging Failed!'
+            }       
         case 'CREATE_TRAIN': 
-            console.log('Success')
-            return state
+            console.log('Create Train Success')
+            return{
+                ...state,
+                authError: 'Loging Failed!'
+           }  
         case 'CREATE_TRAIN_ERROR': 
-            console.log('user login error',action.ERR)
+            console.log('Create Train Error',action.ERR)
             return state 
         case 'LOGOUT_SUCCESS': 
-            console.log('logout success',action.ERR)
+            console.log('Log Out Success',action.ERR)
             return state   
         case 'LOGOUT_ERROR': 
-            console.log('logout error',action.ERR)
+            console.log('Log Out Error',action.ERR)
             return state              
         default:
             return state    

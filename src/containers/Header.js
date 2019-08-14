@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 
 const Header = (props) => {
     const { auth, profile } = props;
-const links = auth.uid ? <SignInLinks profile={profile}/> : <SignOutLinks/>; 
+    const links = auth.uid ? <SignInLinks profile={profile}/> : <SignOutLinks/>; 
     return (
         <nav className="nav-wrapper grey darken-3">
             
             <div className='container'>
-            <Link to='/Dashboard' className="brand-logo"> Train Tracks</Link>
+            <Link to='/' className="brand-logo"> Train Tracks</Link>
             </div>
             <div>    
                 

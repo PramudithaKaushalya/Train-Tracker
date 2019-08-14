@@ -12,15 +12,15 @@ const Notifications = (props) =>{
                     </span>
                     <ul className='notification-list'>
                         {notifications && notifications.map(item => {
-                            return(
-                                <li key={item.id}>
-                                    <span className='red-text'>{item.admin}(Admin) </span>
-                                    <span>{item.content}</span>
-                                    <div className="grey-text note-date">
-                                        {moment(item.time.toDate()).fromNow()}
-                                    </div>
-                                </li>
-                            )
+                        return(
+                            <li key={item.id}>
+                            <span>{item.user}(Admin) </span><br/>
+                            <span className='red-text'>{item.content}</span>
+                            <div className="grey-text note-date">
+                                {moment(item.time.toDate()).fromNow()}
+                            </div>
+                            </li>
+                        )
                         })}
                     </ul>
                 </div>
@@ -30,3 +30,4 @@ const Notifications = (props) =>{
 }
 
 export default Notifications
+

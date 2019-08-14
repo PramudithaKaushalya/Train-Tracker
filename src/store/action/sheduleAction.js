@@ -38,9 +38,9 @@ export const createTrain = (train) => {
             Ganemulla:{Arr:train.ganArr,Dep:train.ganDep,stops:train.ganStop},
             Yagoda:{Arr:train.yagArr,Dep:train.yagDep,stops:train.yagStop},
             Gampaha:{Arr:train.gamArr,Dep:train.gamDep,stops:train.gamStop},
-            lat:"",
-            lng:"",
-            time:0,
+            lat:6.9331195,
+            lng:79.847847,
+            time:1565765415000,
             createAt: new Date()
         }).then(() => {
             dispatch({ type: 'CREATE_TRAIN', train});
