@@ -21,3 +21,30 @@ code {
     monospace;
 }
 
+.mgact{overflow-y:scroll;}
+
+.notf2{max-height: 300px;}
+
+.project-details{
+  width: 50%;
+}
+
+.notf{
+  width: 70%;
+}
+
+.notfw{
+  width:80%;
+}
+
+.notf2{
+  max-height: 300px;
+}
+
+.logoN{
+  border-right: 7px;
+}
+
+.msgact{
+  overflow-y: scroll;
+}

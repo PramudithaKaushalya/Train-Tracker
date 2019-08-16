@@ -37,6 +37,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    {collection:'messages',limit:5,orderBy:['createdOn','desc']},{collection:'notifications',limit:10,orderBy:['time','desc']}
+    {collection:'messages',limit:4,orderBy:['createdOn','desc']},{collection:'notifications',limit:8,orderBy:['time','desc']}
   ])
 )(Dashboard)

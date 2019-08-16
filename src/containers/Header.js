@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-//import Logo from '../Logo.png';
+import Logo from '../Logo.jpg';
 import SignInLinks from './SignInLinks';
 import SignOutLinks from './SignOutLinks';
 import { connect } from 'react-redux';
@@ -11,12 +11,10 @@ const Header = (props) => {
     return (
         <nav className="nav-wrapper grey darken-3">
             
-            <div className='container'>
+            <div>
+            <img src={Logo} alt="Logo" height='65px' width='60px'/> 
             <Link to='/' className="brand-logo"> Train Tracks</Link>
-            </div>
-            <div>    
-                
-                { links }
+            { links }
             </div>
         </nav>
     )
@@ -32,4 +30,3 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(Header);
 
 
-//<img src={Logo} alt="Logo" height='70px' width='70px'/>

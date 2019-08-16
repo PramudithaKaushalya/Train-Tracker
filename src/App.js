@@ -10,6 +10,8 @@ import Search from './train/Search';
 import Add from './train/Add';
 import Notifications from './Messages/createmessage';
 import MessageDetails from './Messages/messagedetails';
+import log from './log/activitylog';
+import Passenger from './containers/Passenger'
 
 class App extends Component {
   render(){
@@ -26,6 +28,8 @@ class App extends Component {
             <Route path='/Notifications' component={Notifications} />
             <Route path='/message/:id' component={MessageDetails} />
             <Route path='/signin' component={Login} />
+            <Route path='/actlog' component={log}/>
+            <Route path='/Passenger' component={Passenger}/>
             <Route exact path='/' component={Dashboard} />
           </Switch>
         </div>

@@ -9,6 +9,7 @@ const MessageList = ({messages}) => {
                 return (
                     <Link to={'/message/' + message.id} key={message.id}>
                     <MessageSummary message={message} />
+                                
                     </Link>
                 )
             })}

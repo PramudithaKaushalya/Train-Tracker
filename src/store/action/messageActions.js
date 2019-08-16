@@ -6,7 +6,6 @@ export const createMessage = (message) =>{
         firestore.collection('messages').add({
             ...message,
             adminId:adminId,
-            
             createdOn : new Date()
         }).then(() =>{
             dispatch({type:'CREATE_MESSAGE',message});

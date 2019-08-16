@@ -43,7 +43,7 @@ class Driver extends Component {
       alert("Create Driver Successfully!!!")
     }
     console.log(this.state.email);
-    this.props.history.push('/Dashboard');
+    this.props.history.push('/');
   }
   render() {
     const { authError } = this.props;

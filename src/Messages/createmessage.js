@@ -15,16 +15,16 @@ const loginStyle = {
 
 class createmessage extends Component {
     state = {
-        //user: '',
+        author: '',
         title:'',
         content:'',
     }
-    // componentDidMount = () => {
-    //     const {auth} = this.props;
-    //     this.setState({
-    //         user : auth.name
-    //     })
-    // }
+    componentDidMount = () => {
+        const {auth} = this.props;
+        this.setState({
+            author : auth.email
+        })
+    }
     handlechange = (e) => {
         this.setState({
             [e.target.id]:e.target.value

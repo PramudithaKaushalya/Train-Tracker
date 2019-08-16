@@ -93,11 +93,10 @@ class Search extends Component {
         key++
       })
     })
-    
   }
   
   render() {
-    const { auth, authError } = this.props;
+    const { auth } = this.props;
     if(!auth.uid) return <Redirect to='/signin'/>
     
     const m = this.state.list;
@@ -176,9 +175,6 @@ class Search extends Component {
           <button className="btn blue lighten-1 z-depth-0">Search Here</button>  
         </div>
         
-        <div className="red-text center">
-            { authError ? <p>{authError}</p>: null}
-          </div>
         </form>
        {items}        
       </div>  

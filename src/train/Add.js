@@ -50,11 +50,10 @@ class Add extends Component {
     console.log(this.state);
     this.setState({redirectToReferrer: true});
     alert("Create Train Successfully");
-    this.props.history.push('/Dashboard');
+    this.props.history.push('/');
   }
   render() {
-    const { authError } = this.props;
-    const {auth} = this.props;
+    const { auth, authError } = this.props;
     if(!auth.uid) return <Redirect to='/signin'/>
     const {from} = this.props.location.state || {
       from: {

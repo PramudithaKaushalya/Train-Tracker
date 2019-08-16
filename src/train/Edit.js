@@ -67,7 +67,7 @@ class Edit extends Component {
     }).catch(function(error) {
         alert("Error removing document: ", error);
     });
-    this.props.history.push('/Dashboard');
+    this.props.history.push('/');
   }
 
   handleSubmit=(e)=>{
@@ -111,11 +111,10 @@ class Edit extends Component {
   }
   
   render() {
-    const { authError } = this.props;
-    const {auth} = this.props;
+    const { auth, authError } = this.props;
     if(!auth.uid) return <Redirect to='/signin'/>
     return (
-      <div style={loginStyle} className="white">
+      <div style={loginStyle} className="white" >
        
         <form onSubmit={this.handleSubmit}>
 

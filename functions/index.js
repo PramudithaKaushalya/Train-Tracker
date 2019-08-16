@@ -18,7 +18,7 @@ exports.messageCreated = functions.firestore
         const message = doc.data();
         const notification = {
             content: "New notification Added",
-            user: `${message.auther}`,
+            user: `${message.author}`,
             title: `${message.title}`,
             time: admin.firestore.FieldValue.serverTimestamp()
         }
