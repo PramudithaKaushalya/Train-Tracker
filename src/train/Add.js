@@ -20,6 +20,7 @@ class Add extends Component {
     side: '',
     type: '',
     class: '',
+    except: '',
     colArr: '', colDep: '', colStop: '',
     marArr: '', marDep: '', marStop: '',
     demArr: '', demDep: '', demStop: '',
@@ -130,7 +131,10 @@ class Add extends Component {
           <label htmlFor="type"> Available classes </label>  
           <input id="class" type="text" onChange={this.handleChange}/>
         </div>
-
+        <div className="input-field"> 
+          <label htmlFor="type"> Run By Except </label>  
+          <input id="except" type="text" onChange={this.handleChange}/>
+        </div>
         {items} 
         
         <div className="input-field">

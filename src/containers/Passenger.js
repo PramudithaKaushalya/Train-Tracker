@@ -6,36 +6,33 @@ import {Redirect} from 'react-router-dom';
 import MessageList from '../Passenger/list';
 
 class Passenger extends Component {
+  
   render(){
     const {notificationPeople, auth} = this.props;
     if(!auth.uid) return <Redirect to='/signin'/>
     return (
         <div className="container">
-          <div className="row">
+          <div >
             <div className="col s12 m6">
-              <MessageList messages={notificationPeople}/>
-            </div>
-            <div className="col s12 m6 right">
-              <MessageList messages={notificationPeople}/>
+              <MessageList notificationPeople={notificationPeople}/>
             </div>
           </div> 
         </div>
-    )
+    )       
   }
 }
 
 const mapStateToProps = (state) => {
   console.log(state);
   return{
-    messages:state.firestore.ordered.messages,
-    auth:state.firebase.auth,
-    notifications:state.firestore.ordered.notifications
+    notificationPeople:state.firestore.ordered.notificationPeople,
+    auth:state.firebase.auth
   }
 }
 
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    {collection:'notificationPeople',limit:4,orderBy:['time','desc']}
+    {collection:'notificationPeople',limit:5,orderBy:['time','desc']}
   ])
 )(Passenger)

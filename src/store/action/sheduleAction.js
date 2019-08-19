@@ -8,7 +8,6 @@ export const getdata = (train) => {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
             } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
         }).catch(function(error) {
@@ -21,8 +20,15 @@ export const createTrain = (train) => {
     return (dispatch, getState, {getFirebase, getFirestore, firebase}) => {
         
         const firestore = getFirestore();
-        firestore.collection("Train").doc(train.name).set({
-            Details:{Name:train.name,RunBy:train.run,Side:train.side,Type:train.type,Available:train.class},
+        let except= train.except.split('');
+        let i = 0;
+        for(i=0; i<except.length; i++){
+            let x;
+            x= parseInt(except[i]);
+            except[i]=x;
+        }
+        firestore.collection("Train").doc(train.colArr).set({
+            Details:{Name:train.name,RunBy:train.run,Side:train.side,Type:train.type,Available:train.class,RunByExcept:except},
             ColomboFort:{Arr:train.colArr,Dep:train.colDep,stops:train.colStop},
             Maradana:{Arr:train.marArr,Dep:train.marDep,stops:train.marStop},
             Dematagoda:{Arr:train.demArr,Dep:train.demDep,stops:train.demStop},

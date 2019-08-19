@@ -4,7 +4,6 @@ import {getFirestore} from 'redux-firestore';
 import { createTrain } from '../store/action/sheduleAction';
 import Collapsible from 'react-collapsible';
 import {Redirect} from 'react-router-dom';
-//import Popup from "reactjs-popup";
 
 const loginStyle = {
   width: "50%",
@@ -26,6 +25,7 @@ class Edit extends Component {
     side: '',
     type: '',
     class: '',
+    except: '',
     colArr: '', colDep: '', colStop: '',
     marArr: '', marDep: '', marStop: '',
     demArr: '', demDep: '', demStop: '',
@@ -56,7 +56,7 @@ class Edit extends Component {
     this.props.createTrain(this.state);
     alert("That train is updated")
     this.setState({redirectToReferrer: true})
-    this.props.history.push('/Dashboard');
+    this.props.history.push('/');
   }
 
   handleDelete=(e)=>{
@@ -150,7 +150,10 @@ class Edit extends Component {
           <div className="input-field">  
             <input id="class" value={this.state.class} type="text" onChange={this.handleChange}/>
           </div>
-
+          <div className="input-field"> 
+          <label htmlFor="type"> Run By Except </label>  
+          <input id="except" type="text" onChange={this.handleChange}/>
+          </div>
           <Collapsible key="col" Fort trigger="ColomboFort" className="trigger">
             <label htmlFor="name"> Arrival Time </label>
             <div className="input-field">    
